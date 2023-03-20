@@ -80,13 +80,27 @@ print()
 car.current_speed=100
 print()
 
-class Truck(Car):
+class DieselEngine:
+     def tank(self, how_many=100):
+          print(f"Adding {how_many} liters of Diesel")
+
+class PetrolEngine:
+     def tank(self, how_many=20):
+          print(f"Adding {how_many} liters of Petrol")
+
+
+class Truck(Car, DieselEngine):
      def __init__(self, max_load, *args, **kwargs):
           super().__init__(*args, **kwargs)
           self.max_load = max_load
 
+class SportCar(Car, PetrolEngine):
+     pass
+
 truck = Truck(make="Mercedes", model_name="Actos", color="Black", top_speed=90, max_load=1200)
-print(truck)
+porsche = SportCar(make="Porsche", model_name="911", color="Red", top_speed=250)
+print(truck.tank())
+print(porsche.tank())
 
 print(truck.current_speed)
 truck.accelerate()
@@ -98,3 +112,6 @@ print(isinstance(truck, Car))
 print()
 print(issubclass(Truck, Car))
 print(issubclass(Car, Truck))
+
+import this
+print(this)
