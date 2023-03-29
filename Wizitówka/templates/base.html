@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <h1 style="color:blue">
+        Hi on my webpage
+    </h1>
+    <img src="https://ppe-testing.com/wp-content/uploads/2020/11/LIDERO-_1_S5A4089-33-scaled.jpg" alt="My foto" title="Dima in action" style="width:500px" class="center">
+
+    {% block main %}
+    {% endblock %}
+</body>
+</html>
