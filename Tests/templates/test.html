@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista badań</title>
+    <style>
+        table, th, tr, td {border: 1px solid black;}
+    </style>
+</head>
+
+<h2>Lista Badań</h2>
+
+<table>
+    <thead>
+    <th>Nazwa</th>
+    <th>Numer Serijny</th>
+    <th>Napięcie badania</th>
+    <th>Prąd upływu</th>
+    <th>Data</th>
+    <th>Rezultat</th>
+    <th>Nastepne badanie</th>
+    </thead>
+{% for test in tests %}
+    <tr>
+        <td><a href="/tests/{{ loop.index }}">{{ test.name }}</a></td>
+        <td>{{ test.number }}</td>
+        <td>{{ test.voltage }}</td>
+        <td>{{ test.current }}</td>
+        <td>{{ test.date }}</td>
+        <td>{{ test.result }}</td>
+        <td>{{ test.next_test }}</td>
+    </tr>
+{% endfor %}
+</table>
+<div>
+    <h2> Dodaj nowe badanie: </h2>
+    <form method="POST" action="/tests/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <tr>
+                    <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Go">
+    </form>
+</div>
+</body>
+</html>
